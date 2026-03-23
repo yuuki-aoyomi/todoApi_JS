@@ -43,6 +43,7 @@ async function main() {
 
     //一覧取得
     app.get("/todos", async (req, res) => {
+        console.log("/todos list called");
         const result = await pool.query(
             "SELECT * FROM todos ORDER BY created_at DESC"
         );
@@ -51,6 +52,7 @@ async function main() {
 
     //todo追加
     app.post("/todos", async (req, res) => {
+        console.log("/todos add called");
         const { title } = req.body;
         if (!title || title.trim() === "") {
             return res.status(400).json({ error: "title is required" });
@@ -66,6 +68,7 @@ async function main() {
 
     //達成状況変更
     app.patch("/todos/:id", async (req, res) => {
+        console.log("/todos/:id called", req.params.id, req.body);
         const { done } = req.body;
 
         await pool.query(
@@ -78,6 +81,7 @@ async function main() {
 
     //削除
     app.delete("/todos/:id", async (req, res) => {
+        console.log("/todos:id delete called");
         await pool.query("DELETE FROM todos WHERE id = $1",
             [req.params.id]
         );
