@@ -72,6 +72,8 @@ async function main() {
             "UPDATE todos SET done = $1 WHERE id = $2",
             [done, req.params.id]
         );
+
+        res.json({ success: true, id: req.params.id, done });
     });
 
     //削除
