@@ -3,6 +3,7 @@
 
 ```
 cd todoApi_JS
+npm install
 docker compose up
 ```
 
